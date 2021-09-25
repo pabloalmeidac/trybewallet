@@ -5,17 +5,17 @@ class AddExpenses extends React.Component {
     return (
       <form>
         <label htmlFor="valor">
-          Valor:
+          Valor
           <input type="text" name="valor" id="valor" />
         </label>
         <label htmlFor="moeda">
-          Moeda:
+          Moeda
           <select id="moeda">
             <option value="USD" selected> USD</option>
           </select>
         </label>
         <label htmlFor="metodo-pagamento">
-          Método de pagamento:
+          Método de pagamento
           <select id="metodo-pagamento">
             <option selected value="Dinheiro"> Dinheiro </option>
             <option value="Cartão de crédito"> Cartão de crédito </option>
@@ -23,7 +23,7 @@ class AddExpenses extends React.Component {
           </select>
         </label>
         <label htmlFor="tag">
-          Tag:
+          Tag
           <select id="tag">
             <option value="Alimentação" selected> Alimentação </option>
             <option value="Lazer"> Lazer </option>
@@ -33,7 +33,7 @@ class AddExpenses extends React.Component {
           </select>
         </label>
         <label htmlFor="descricao">
-          Descrição:
+          Descrição
           <input type="text" name="descricao" id="descricao" />
         </label>
       </form>
