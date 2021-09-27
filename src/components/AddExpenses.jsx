@@ -1,7 +1,26 @@
 import React from 'react';
+import tokensAPI from '../services/tokensAPI';
 
 class AddExpenses extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { array: [] };
+
+    this.listCoins = this.listCoins.bind(this);
+  }
+
+  async componentDidMount() {
+    const api = await tokensAPI();
+    const coins = Object.keys(api);
+    this.listCoins(coins);
+  }
+
+  listCoins(coins) {
+    this.setState({ array: coins });
+  }
+
   render() {
+    const { array } = this.state;
     return (
       <form>
         <label htmlFor="valor">
@@ -11,7 +30,11 @@ class AddExpenses extends React.Component {
         <label htmlFor="moeda">
           Moeda
           <select id="moeda">
-            <option value="USD" selected> USD</option>
+            { array.map((token) => (
+              <option value={ token } key={ token }>
+                { token }
+              </option>
+            ))}
           </select>
         </label>
         <label htmlFor="metodo-pagamento">
@@ -29,7 +52,7 @@ class AddExpenses extends React.Component {
             <option value="Lazer"> Lazer </option>
             <option value="Trabalho"> Trabalho </option>
             <option value="Transporte"> Transporte </option>
-            <option value="Saude"> Saude </option>
+            <option value="Saude"> Saúde </option>
           </select>
         </label>
         <label htmlFor="descricao">

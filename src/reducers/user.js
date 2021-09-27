@@ -5,6 +5,7 @@ const INITIAL_STATE = {
     email: '',
     password: '',
   },
+  loading: true,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
