@@ -16,7 +16,8 @@ class AddExpenses extends React.Component {
   }
 
   listCoins(coins) {
-    this.setState({ array: coins });
+    const coinsfiltered = coins.filter((coin) => coin !== 'USDT');
+    this.setState({ array: coinsfiltered });
   }
 
   render() {
