@@ -5,6 +5,7 @@ import tokensAPI from '../services/tokensAPI';
 import { walletAction } from '../actions';
 import Header from '../components/Header';
 import Input from '../components/Input';
+import Table from '../components/Table';
 
 class Wallet extends React.Component {
   constructor(props) {
@@ -109,6 +110,7 @@ class Wallet extends React.Component {
             Adicionar despesa
           </button>
         </form>
+        <Table />
       </div>
     );
   }
