@@ -9,8 +9,10 @@ class Table extends React.Component {
     this.getExpensesFromState = this.getExpensesFromState.bind(this);
   }
 
-  // logica que peguei do Rafael Victor https://github.com/tryber/sd-013-a-project-trybewallet/pull/24/files?authenticity_token=aHHN7aQg73lwH4raYTTDt7ZDbu1wCeSvO4R8c7cMbtuRk2eP9Nrad%2B1fT%2BAIYzwWndC1NT2L7VtCP7nRE3giqg%3D%3D&file-filters%5B%5D=.js
-  // que me ajudou em call
+  /* logica que peguei do Rafael Victor https://github.com/tryber/sd-013-a-project-trybewallet/pull/24/files?authenticity_token=aHHN7aQg73lwH4raYTTDt7ZDbu1wCeSvO4R8c7cMbtuRk2eP9Nrad%2B1fT%2BAIYzwWndC1NT2L7VtCP7nRE3giqg%3D%3D&file-filters%5B%5D=.js
+  que me ajudou em call */
+
+  /* Função que faz um map pra percorrer em expenses e pegar os valores de cada posição e em seguida jogar esses valores na tabela */
   getExpensesFromState() {
     const { expenses } = this.props;
     return expenses.map((expense) => {
