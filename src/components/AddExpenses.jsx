@@ -1,12 +1,30 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import tokensAPI from '../services/tokensAPI';
+import { walletAction } from '../actions';
+import Input from './Input';
 
 class AddExpenses extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { listCoins: [] };
+    this.state = {
+      listCoins: [],
+      totalExpenses: 0,
+      expenses: {
+        id: 0,
+        value: 0,
+        description: '',
+        currency: 'USD',
+        method: 'Dinheiro',
+        tag: 'Alimentação',
+        exchangeRates: {},
+      },
+    };
 
     this.list = this.list.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.addDespesa = this.addDespesa.bind(this);
   }
 
   async componentDidMount() {
@@ -20,17 +38,37 @@ class AddExpenses extends React.Component {
     this.setState({ listCoins: coinsfiltered });
   }
 
+  handleChange({ target }) {
+    const { name, value } = target;
+    this.setState((prevState) => (
+      { ...prevState, expenses: { ...prevState.expenses, [name]: value } }));
+  }
+
+  async addDespesa() {
+    const { dispatchAdd } = this.props;
+    const api = await tokensAPI();
+    delete api.USDT;
+    this.setState((prevState) => (
+      { ...prevState, expenses: { ...prevState.expenses, id: +1, exchangeRates: api } }));
+
+    const { expenses: { value, currency }, expenses, totalExpenses } = this.state;
+    dispatchAdd(expenses);
+
+    const tokenValue = Object.values(api).filter((token) => token.code === currency);
+    let total = value * tokenValue[0].ask;
+    total = Math.round((total + totalExpenses) * 100) / 100;
+    this.setState({ totalExpenses: total });
+  }
+
   render() {
-    const { listCoins } = this.state;
+    const { listCoins, expenses: { value, description } } = this.state;
+    const { handleChange, addDespesa } = this;
     return (
       <form>
-        <label htmlFor="valor">
-          Valor
-          <input type="text" name="valor" id="valor" />
-        </label>
+        <Input id="valor" name="value" value={ value } handleChange={ handleChange } />
         <label htmlFor="moeda">
           Moeda
-          <select id="moeda">
+          <select id="moeda" name="currency" onChange={ handleChange }>
             { listCoins.map((token) => (
               <option value={ token } key={ token }>
                 { token }
@@ -40,7 +78,7 @@ class AddExpenses extends React.Component {
         </label>
         <label htmlFor="metodo-pagamento">
           Método de pagamento
-          <select id="metodo-pagamento">
+          <select id="metodo-pagamento" onChange={ handleChange } name="method">
             <option selected value="Dinheiro"> Dinheiro </option>
             <option value="Cartão de crédito"> Cartão de crédito </option>
             <option value="Cartão de débito"> Cartão de débito</option>
@@ -48,7 +86,7 @@ class AddExpenses extends React.Component {
         </label>
         <label htmlFor="tag">
           Tag
-          <select id="tag">
+          <select id="tag" onChange={ handleChange } name="tag">
             <option value="Alimentação" selected> Alimentação </option>
             <option value="Lazer"> Lazer </option>
             <option value="Trabalho"> Trabalho </option>
@@ -56,11 +94,13 @@ class AddExpenses extends React.Component {
             <option value="Saude"> Saúde </option>
           </select>
         </label>
-        <label htmlFor="descricao">
-          Descrição
-          <input type="text" name="descricao" id="descricao" />
-        </label>
-        <button type="button">
+        <Input
+          id="Descrição"
+          name="description"
+          value={ description }
+          handleChange={ handleChange }
+        />
+        <button type="button" onClick={ addDespesa }>
           Adicionar despesa
         </button>
       </form>
@@ -68,4 +108,12 @@ class AddExpenses extends React.Component {
   }
 }
 
-export default AddExpenses;
+const mapDispatchToProps = (dispatch) => ({
+  dispatchAdd: (currentExpenses) => dispatch(walletAction(currentExpenses)),
+});
+
+AddExpenses.propTypes = {
+  dispatchAdd: PropTypes.func.isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(AddExpenses);

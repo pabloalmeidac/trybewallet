@@ -6,14 +6,13 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      totalExpense: 0,
       cambio: 'BRL',
     };
   }
 
   render() {
-    const { email } = this.props;
-    const { totalExpense, cambio } = this.state;
+    const { email, totalExpenses } = this.props;
+    const { cambio } = this.state;
     return (
       <header>
         <p data-testid="email-field">
@@ -22,7 +21,7 @@ class Header extends React.Component {
         </p>
         <p data-testid="total-field">
           Despesa Total:
-          { totalExpense }
+          { totalExpenses }
         </p>
         <p data-testid="header-currency-field">
           { cambio }
@@ -34,6 +33,7 @@ class Header extends React.Component {
 
 Header.propTypes = {
   email: PropTypes.string.isRequired,
+  totalExpenses: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = ({ user: { email } }) => ({

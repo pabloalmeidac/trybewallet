@@ -1,16 +1,17 @@
 import { WALLET_ACTION } from '../actions/actionTypes';
 
 const INITIAL_STATE = {
-  wallet: {
-    currencies: [],
-    expenses: [],
-  },
+  currencies: [],
+  expenses: [],
 };
 
+// id = expenses.length +1
 const walletReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case WALLET_ACTION:
-    return { ...state, currencies: action.currencies };
+    return { ...state,
+      expenses: [...state.expenses, action.currentExpenses],
+    };
   default:
     return state;
   }

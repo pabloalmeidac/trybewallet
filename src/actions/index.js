@@ -6,6 +6,7 @@ export const loginAction = (email, password) => ({
   password,
 });
 
-export const walletAction = () => ({
+export const walletAction = (currentExpenses) => ({
   type: WALLET_ACTION,
+  currentExpenses,
 });
