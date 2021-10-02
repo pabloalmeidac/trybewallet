@@ -1,7 +1,4 @@
-import {
-  USER_ACTION,
-  WALLET_ACTION,
-  DELETE_ACTION, UPDATE_TOTAL_ACTION } from './actionTypes';
+import { USER_ACTION, WALLET_ACTION, DELETE_ACTION } from './actionTypes';
 
 export const loginAction = (email, password) => ({
   type: USER_ACTION,
@@ -18,9 +15,4 @@ export const walletAction = (currentExpenses, total) => ({
 export const deleteAction = (currentExpenses) => ({
   type: DELETE_ACTION,
   currentExpenses,
-});
-
-export const updateTotalAction = (value) => ({
-  type: UPDATE_TOTAL_ACTION,
-  value,
 });

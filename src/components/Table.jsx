@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteAction, updateTotalAction } from '../actions';
+import { deleteAction } from '../actions';
 
 class Table extends React.Component {
   constructor() {
@@ -16,7 +16,7 @@ class Table extends React.Component {
   /* Função que faz um map pra percorrer em expenses e pegar os valores de cada posição e em seguida jogar esses valores na tabela */
 
   getExpensesFromState() {
-    const { expenses, dispatchDelete, dispatchUpdate } = this.props;
+    const { expenses, dispatchDelete } = this.props;
     return expenses.map((expense) => {
       const { description, tag, currency, method, value, exchangeRates } = expense;
       const cambio = exchangeRates[currency].ask;
@@ -37,7 +37,7 @@ class Table extends React.Component {
             <button
               type="button"
               data-testid="delete-btn"
-              onClick={ () => dispatchDelete(expense.id) && dispatchUpdate(totalInBrl) }
+              onClick={ () => dispatchDelete(expense.id) }
             >
               Deletar
             </button>
@@ -78,13 +78,11 @@ const mapStateToProps = ({ wallet: { expenses, totalExpenses } }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchDelete: (currentExpenses) => dispatch(deleteAction(currentExpenses)),
-  dispatchUpdate: (value) => dispatch(updateTotalAction(value)),
 });
 
 Table.propTypes = {
   expenses: PropTypes.objectOf().isRequired,
   dispatchDelete: PropTypes.func.isRequired,
-  dispatchUpdate: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
