@@ -14,7 +14,7 @@ class Wallet extends React.Component {
       listCoins: [],
       totalExpenses: 0,
       expenses: {
-        id: 0,
+        id: -1,
         value: 0,
         description: '',
         currency: 'USD',
@@ -48,28 +48,32 @@ class Wallet extends React.Component {
 
   async addDespesa() {
     const { dispatchAdd } = this.props;
+
     const api = await tokensAPI();
     delete api.USDT;
-    this.setState((prevState) => (
-      { ...prevState, expenses: { ...prevState.expenses, exchangeRates: api } }));
 
-    const { expenses: { value, currency }, expenses, totalExpenses } = this.state;
-    dispatchAdd(expenses);
     this.setState((prevState) => (
-      { ...prevState, expenses: { ...prevState.expenses, id: +1 } }));
+      { ...prevState,
+        expenses: {
+          ...prevState.expenses, exchangeRates: api, id: prevState.expenses.id + 1 },
+      }
+    ));
+    const { expenses: { value, currency }, expenses, totalExpenses } = this.state;
 
     const tokenValue = Object.values(api).filter((token) => token.code === currency);
     let total = value * tokenValue[0].ask;
     total = Math.round((total + totalExpenses) * 100) / 100;
+
     this.setState({ totalExpenses: total });
+    dispatchAdd(expenses, total);
   }
 
   render() {
-    const { listCoins, totalExpenses, expenses: { value, description } } = this.state;
+    const { listCoins, expenses: { value, description } } = this.state;
     const { handleChange, addDespesa } = this;
     return (
       <div>
-        <Header totalExpenses={ totalExpenses } />
+        <Header />
         <form>
           <Input id="valor" name="value" value={ value } handleChange={ handleChange } />
           <label htmlFor="moeda">
@@ -117,7 +121,7 @@ class Wallet extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchAdd: (currentExpenses) => dispatch(walletAction(currentExpenses)),
+  dispatchAdd: (currentExpenses, total) => dispatch(walletAction(currentExpenses, total)),
 });
 
 Wallet.propTypes = {

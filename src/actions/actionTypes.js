@@ -1,2 +1,4 @@
 export const USER_ACTION = 'USER_ACTION';
 export const WALLET_ACTION = 'WALLET_ACTION';
+export const DELETE_ACTION = 'DELETE_ACTION';
+export const UPDATE_TOTAL_ACTION = 'UPDATE_TOTAL_ACTION';

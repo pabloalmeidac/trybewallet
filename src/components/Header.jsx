@@ -36,8 +36,9 @@ Header.propTypes = {
   totalExpenses: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = ({ user: { email } }) => ({
+const mapStateToProps = ({ user: { email }, wallet: { totalExpenses } }) => ({
   email,
+  totalExpenses,
 });
 
 export default connect(mapStateToProps)(Header);
