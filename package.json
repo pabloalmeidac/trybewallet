@@ -1,7 +1,8 @@
 {
   "name": "trybewallet",
   "version": "0.1.0",
-  "private": false,
+  "private": true,
+  "homepage": "https://pabloalmeidac.github.io/trybewallet/",
   "dependencies": {
     "@testing-library/jest-dom": "4.2.4",
     "@testing-library/react": "10.0.4",
