@@ -22,7 +22,7 @@ class Table extends React.Component {
       const cambio = exchangeRates[currency].ask;
       const totalInBrl = Math.round((value * cambio) * 100) / 100;
       const token = exchangeRates[currency];
-      const cambioUsed = Math.round((token.ask) * 100) / 100;
+      const cambioUsed = Math.round((token.ask) * 100) / 100; // cambio usado
       return (
         <tr className="body-table" key={ expense.id } id={ expense.id }>
           <td>{ description }</td>

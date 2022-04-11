@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { loginAction } from '../actions';
+import './styles/login.css';
+import logo from '../images/logo.png';
 // https://qastack.com.br/programming/30187781/how-to-disable-a-button-when-an-input-is-empty
 
 class Login extends React.Component {
@@ -61,32 +63,38 @@ class Login extends React.Component {
       return <Redirect to="/carteira" />;
     }
     return (
-      <div>
-        <form>
-          <input
-            placeholder="Digite seu email"
-            type="email"
-            data-testid="email-input"
-            onChange={ this.handleChange }
-            value={ email }
-            name="email"
-          />
-          <input
-            placeholder="Digite sua senha"
-            type="password"
-            data-testid="password-input"
-            onChange={ this.handleChange }
-            value={ password }
-            name="password"
-          />
-          <button
-            type="button"
-            disabled={ !enabled }
-            onClick={ () => this.validate() }
-          >
-            Entrar
-          </button>
-        </form>
+      <div className="container">
+        <div className="form">
+          <div className="form-header">
+            <img src={ logo } width="70%" alt="logo-trybe" />
+          </div>
+          <form>
+            <input
+              placeholder="Digite seu email"
+              type="email"
+              data-testid="email-input"
+              onChange={ this.handleChange }
+              value={ email }
+              name="email"
+            />
+            <input
+              placeholder="Digite sua senha"
+              type="password"
+              data-testid="password-input"
+              onChange={ this.handleChange }
+              value={ password }
+              name="password"
+            />
+            <button
+              className={ enabled ? 'login_btn' : 'login_btn_disabled' }
+              type="button"
+              disabled={ !enabled }
+              onClick={ () => this.validate() }
+            >
+              Entrar
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

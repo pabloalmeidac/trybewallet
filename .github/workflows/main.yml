@@ -1,6 +1,10 @@
+name: deploy
+
 on:
-  pull_request:
-    types: [opened, synchronize]
+  push:
+    branches:
+      - master
+      - pabloalmeidac-trybewallet
 
 jobs:
   eslint:
@@ -45,3 +49,19 @@ jobs:
           evaluation-data: ${{ steps.evaluator.outputs.result }}
           environment: production
           pr-number: ${{ steps.evaluator.outputs.pr-number }}
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: Build web-app
+        run: |
+          npm ci
+          npm run build
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build

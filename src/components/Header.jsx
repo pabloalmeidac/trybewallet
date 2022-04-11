@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import '../pages/styles/wallet.css';
+import logo from '../images/logo.png';
 
 class Header extends React.Component {
   // Função que atualiza a despesa total
@@ -9,27 +11,39 @@ class Header extends React.Component {
   totalExpense() {
     const { expenses } = this.props;
     if (!expenses.length) return 0;
-    const num = expenses.map(
+    const totalValue = expenses.map(
       ({ value, currency, exchangeRates }) => value * exchangeRates[currency].ask,
     ).reduce((acc, curr) => acc + curr);
-    return num.toFixed(2);
+    return totalValue.toFixed(2);
   }
 
   render() {
     const { email } = this.props;
     return (
       <header>
-        <p data-testid="email-field">
-          Email:
-          {email}
-        </p>
-        <p data-testid="total-field">
-          Despesa Total:
-          { this.totalExpense() }
-        </p>
-        <p data-testid="header-currency-field">
-          BRL
-        </p>
+        <div className="img-header">
+          <img src={ logo } width="70%" alt="logo-trybe" />
+        </div>
+        <div className="infos-header">
+          <div className="infos-header-email">
+            <p data-testid="email-field">
+              Email:
+              &nbsp;
+              { email }
+            </p>
+          </div>
+          <div className="infos-header-expense">
+            <p data-testid="total-field">
+              Despesa Total: R$
+              &nbsp;
+              { this.totalExpense() }
+              &nbsp;
+            </p>
+            <p data-testid="header-currency-field">
+              BRL
+            </p>
+          </div>
+        </div>
       </header>
     );
   }

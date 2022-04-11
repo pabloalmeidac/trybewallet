@@ -6,6 +6,7 @@ import { walletAction } from '../actions';
 import Header from '../components/Header';
 import Input from '../components/Input';
 import Table from '../components/Table';
+import './styles/wallet.css';
 
 class Wallet extends React.Component {
   constructor(props) {
@@ -29,12 +30,14 @@ class Wallet extends React.Component {
     this.addDespesa = this.addDespesa.bind(this);
   }
 
+  // Aqui eu pego os nomes das moedas
   async componentDidMount() {
     const api = await tokensAPI();
     const coins = Object.keys(api);
     this.list(coins);
   }
 
+  // Aqui eu faço a exclusão do nome 'USDT'
   list(coins) {
     const coinsfiltered = coins.filter((coin) => coin !== 'USDT');
     this.setState({ listCoins: coinsfiltered });
