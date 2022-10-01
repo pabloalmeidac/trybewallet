@@ -4,11 +4,6 @@ Este repositório foi criado para colocar em prática os conhecimentos adquirido
 # Sobre o projeto
 O objetivo desse projeto era desenvolver uma carteira de controle de gastos com conversor de moedas, utilizando uma API de Cotações de Moedas e redux para operações  básicas de criação e manipulação de um estado de redux. O usuario consegue adicionar e remover um gasto, visualizar uma tablea com seus gastos e visualizar o total de gastos convertidos para uma moeda de sua escolha. 
 
-  - Adicionar, remover e editar um gasto;
-  - Visualizar uma tabelas com seus gastos;
-  - Visualizar o total de gastos convertidos para uma moeda de escolha;
-  
-
 ### Habilidades do projeto
 
   * Criar um store Redux em aplicações React
@@ -23,12 +18,10 @@ O objetivo desse projeto era desenvolver uma carteira de controle de gastos com 
 
   * Criar actions assíncronas na sua aplicação React que faz uso de Redux.
 
-
 # Imagens do projeto
 
 ![login](https://github.com/pabloalmeidac/trybewallet/blob/pabloalmeidac-trybewallet/src/images/login.jpg?raw=true)
 ![wallet](https://github.com/pabloalmeidac/trybewallet/blob/pabloalmeidac-trybewallet/src/images/wallet.jpg?raw=true)
-
 
 # Tecnologias utilizadas
 - React.js
