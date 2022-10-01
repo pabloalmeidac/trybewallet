@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deleteAction } from '../actions';
+import { AiFillDelete, AiTwotoneEdit } from 'react-icons/ai';
 
 class Table extends React.Component {
   constructor() {
@@ -25,24 +26,25 @@ class Table extends React.Component {
       const cambioUsed = Math.round((token.ask) * 100) / 100; // cambio usado
       return (
         <tr className="body-table" key={ expense.id } id={ expense.id }>
-          <td>{ description }</td>
-          <td>{ tag }</td>
-          <td>{ method }</td>
-          <td>{ value }</td>
-          <td>{ token.name }</td>
-          <td>{ cambioUsed }</td>
-          <td>{ totalInBrl }</td>
-          <td>Real</td>
-          <td>
-            <button
-              type="button"
-              data-testid="delete-btn"
-              onClick={ () => dispatchDelete(expense.id) }
-            >
-              Deletar
-            </button>
-            <button type="button">Editar</button>
-          </td>
+        <td>{ description }</td>
+        <td>{ tag }</td>
+        <td>{ method }</td>
+        <td>{ value }</td>
+        <td>{ token.name }</td>
+        <td>{ cambioUsed }</td>
+        <td>{ totalInBrl }</td>
+        <td>Real</td>
+        <td>
+          <button
+            className='btn-edit'
+            type="button"
+            data-testid="delete-btn"
+            onClick={ () => dispatchDelete(expense.id) }
+          >'
+            <AiTwotoneEdit className='edit-icon'/>
+          </button>
+          <button className='btn-delete' type="button"><AiFillDelete className='delete-icon'/></button>
+        </td>
         </tr>
       );
     });
@@ -51,7 +53,7 @@ class Table extends React.Component {
   render() {
     const { getExpensesFromState } = this;
     return (
-      <div>
+      <div className="container-body">
         <table>
           <tr>
             <th>Descrição</th>

@@ -25,24 +25,20 @@ class Header extends React.Component {
           <img src={ logo } width="70%" alt="logo-trybe" />
         </div>
         <div className="infos-header">
-          <div className="infos-header-email">
-            <p data-testid="email-field">
-              Email:
-              &nbsp;
-              { email }
-            </p>
-          </div>
-          <div className="infos-header-expense">
-            <p data-testid="total-field">
-              Despesa Total: R$
-              &nbsp;
-              { this.totalExpense() }
-              &nbsp;
-            </p>
-            <p data-testid="header-currency-field">
-              BRL
-            </p>
-          </div>
+          <p data-testid="email-field">
+            Email:
+            &nbsp;
+            { email }
+          </p>
+          <p data-testid="total-field">
+            Despesa Total: R$
+            &nbsp;
+            { this.totalExpense() }
+            &nbsp;
+          </p>
+          <p data-testid="header-currency-field">
+            BRL
+          </p>
         </div>
       </header>
     );

@@ -1,47 +1,99 @@
 header{
-  float:left;
-  width:100%;
+  display: grid;
+  grid-template-columns: 15% 1fr;
+  height: 10vh;
+  width: 90vw;
+  margin: 1rem auto;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #fff;
+  box-shadow: 0 1px 4px 0 #0000001a;
 }
 
 header .img-header{
-  float:left;
+  align-items: center;
+  padding: 20px;
   width: 200px;
-  padding:20px;
 }
 
-header .infos-header{
-  float:right;
-  width:100%;
-  max-width: 600px;
-  display: inline-flex;
-  padding:20px;
+header .infos-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  align-items: center;
+  gap: 1rem;
 }
 
-header .infos-header-email{
-  float:left;
-  width:60%;
+.container-expense, .container-body {
+  width: 90vw;
+  margin: 1rem auto;
+  background-color: #fff;
+  box-shadow: 0 1px 4px 0 #0000001a;
+  box-sizing: border-box;
 }
 
-header .infos-header-expense{
-  float:right;
-  width:40%;
-  display: inline-flex;
+.container-body table{
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
 }
 
-@media screen and (max-width: 880px) {
-  header .img-header{
-    width:100%;
-    display: inline-flex;
-    justify-content: center;
-  }
-  
-  header .img-header img{
-    max-width:200px;
-  }
+.container-expense-info {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  text-transform: capitalize;
+  align-items: flex-end;
+}
 
-  header .infos-header{
-    width:100%;
-    display: inline-flex;
-    justify-content: center;
-  }
+.container-expense-info input, select{
+  width: 100%;
+  margin-top: 10px;
+  padding: 1rem;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid black;
+  text-align: center;
+  color: black;
+}
+
+.btn-expense {
+  padding: 1rem;
+  color: #000;
+  font-weight: bold;
+  background: #2FC18C;
+  border: 1px solid #2FC18C;
+  border-radius: 10px;
+}
+
+.btn-expense:hover {
+  background: transparent;
+  cursor: pointer;
+}
+
+.body-table button{
+  border-radius: 4px;
+  padding: 6px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.delete-icon, .edit-icon {
+  color: white;
+}
+
+.btn-delete {
+  background: #a40301;
+  border: 1px solid #a40301;
+}
+
+.btn-edit {
+  background: yellow;
+  border: 1px solid yellow;
+}
+
+.edit-icon {
+  color: black;
 }

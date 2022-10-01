@@ -77,45 +77,47 @@ class Wallet extends React.Component {
     return (
       <div>
         <Header />
-        <form>
-          <Input id="valor" name="value" value={ value } handleChange={ handleChange } />
-          <label htmlFor="moeda">
-            Moeda
-            <select id="moeda" name="currency" onChange={ handleChange }>
-              { listCoins.map((token) => (
-                <option value={ token } key={ token }>
-                  { token }
-                </option>
-              ))}
-            </select>
-          </label>
-          <label htmlFor="metodo-pagamento">
-            Método de pagamento
-            <select id="metodo-pagamento" onChange={ handleChange } name="method">
-              <option selected value="Dinheiro"> Dinheiro </option>
-              <option value="Cartão de crédito"> Cartão de crédito </option>
-              <option value="Cartão de débito"> Cartão de débito</option>
-            </select>
-          </label>
-          <label htmlFor="tag">
-            Tag
-            <select id="tag" onChange={ handleChange } name="tag">
-              <option value="Alimentação" selected> Alimentação </option>
-              <option value="Lazer"> Lazer </option>
-              <option value="Trabalho"> Trabalho </option>
-              <option value="Transporte"> Transporte </option>
-              <option value="Saude"> Saúde </option>
-            </select>
-          </label>
-          <Input
-            id="Descrição"
-            name="description"
-            value={ description }
-            handleChange={ handleChange }
-          />
-          <button type="button" onClick={ addDespesa }>
-            Adicionar despesa
-          </button>
+        <form className="container-expense">
+          <div className="container-expense-info">
+            <Input id="valor" name="value" value={ value } handleChange={ handleChange } />
+            <label htmlFor="moeda">
+              Moeda
+              <select id="moeda" name="currency" onChange={ handleChange }>
+                { listCoins.map((token) => (
+                  <option value={ token } key={ token }>
+                    { token }
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label htmlFor="metodo-pagamento">
+              Método de pagamento
+              <select id="metodo-pagamento" onChange={ handleChange } name="method">
+                <option selected value="Dinheiro"> Dinheiro </option>
+                <option value="Cartão de crédito"> Cartão de crédito </option>
+                <option value="Cartão de débito"> Cartão de débito</option>
+              </select>
+            </label>
+            <label htmlFor="tag">
+              Tag
+              <select id="tag" onChange={ handleChange } name="tag">
+                <option value="Alimentação" selected> Alimentação </option>
+                <option value="Lazer"> Lazer </option>
+                <option value="Trabalho"> Trabalho </option>
+                <option value="Transporte"> Transporte </option>
+                <option value="Saude"> Saúde </option>
+              </select>
+            </label>
+            <Input
+              id="Descrição"
+              name="description"
+              value={ description }
+              handleChange={ handleChange }
+            />
+            <button className="btn-expense"type="button" onClick={ addDespesa }>
+              Adicionar despesa
+            </button>
+          </div>
         </form>
         <Table />
       </div>
