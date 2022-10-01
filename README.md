@@ -2,7 +2,7 @@
 Este repositório foi criado para colocar em prática os conhecimentos adquiridos no curso de Desenvolvimento Web da **Trybe** de um projeto do bloco de **Front-end**.
 
 # Sobre o projeto
-O objetivo desse projeto era desenvolver uma carteira de controle de gastos com conversor de moedas, utilizando uma API de Cotações de Moedas e redux para operações  básicas de criação e manipulação de um estado de redux. O usuario consegue adicionar e remover um gasto, visualizar uma tablea com seus gastos e visualizar o total de gastos convertidos para uma moeda de sua escolha. 
+O objetivo desse projeto era desenvolver uma carteira de controle de gastos com conversor de moedas, utilizando uma API de Cotações de Moedas, redux para operações  básicas de criação e manipulação de um estado de redux. O usuario consegue adicionar e remover um gasto, visualizar uma tablea com seus gastos e visualizar o total de gastos convertidos para uma moeda de sua escolha. 
 
 ### Habilidades do projeto
 
